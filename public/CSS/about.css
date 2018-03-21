@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Format for user images */
+#users {
+	width:100%;
+	margin-top:50px;
+	margin-bottom:50px;
+}
+#user1, #user2 {
+	text-align:left;
+}
+.userImg {
+	width:100%;
+}
+#user1 {
+	width:48%;
+	margin-left:52%;
+}
+#user2 {
+	width:48%;
+	float:left;
+}
+#user3 {
+	width:48%;
+	margin-left:26%;
+}
+
+/* Format for user names */
+.nameSpace {
+	height:20px;
+}
+.name {
+	font-family:GalanoGrotesqueAlt-SemiBold;
+	letter-spacing:-0.5px;
+}

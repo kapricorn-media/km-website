@@ -1,0 +1,25 @@
+<div class="post">
+	<div class="author">
+    	<div class="authorInfo">
+            <div class="graySpacer"></div>
+        	<img class="authorImg" src="../Images/user2.png">
+            <br>
+            <h3>JUL 6</h3>
+        </div>
+    </div>
+    <div class="entryOutline">
+    <div class="entry">
+        <div class="graySpacer"></div>
+        <div class="vidContainer">
+            <iframe class="video" src="https://player.vimeo.com/video/173788344?byline=0&portrait=0&title=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+    	<div class="postTitle">
+        	<h2>Terrain Gen Update</h2>
+        </div>
+        <p>If you had a computer with infinite memory, you could walk forever in this stage of the game. I programmed a chunk-based terrain generation system which generates simple wavey plains that stretch out, in principle, as far as the eye can see (a little closer at the moment, for testing purposes). Chunks can be generated from scratch, loaded into memory, and displayed as needed.</p>
+        <p>Each chunk is a square heightmap grid. It is given a random noisy/wavey shape using the diamond-square algorithm. Chunks that are generated beside existing chunks have their edges "stitched" together. The props modeled by Luciano are scattered randomly throughout.</p>
+        <p>We aren't very happy with the grid-like look of the terrain. In the future, we want to replace it with a more triangular look. I plan on slicing up the heightmap surface with a not-so-random triangulated mesh. We also plan on designing and adding more interesting landscape features, like mountain ridges and depressions.</p>
+    </div>
+    <div class="graySpacerEnd"></div>
+    </div>
+</div>
