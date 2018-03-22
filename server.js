@@ -34,7 +34,6 @@ app.post("/posts", function(req, res) {
     for (var i = 0; i < names.length; i++) {
         var postFilePath = path.join(__dirname, "/posts", type,
             names[i] + ".cson");
-        console.log(postFilePath);
         try {
             var postData = cson.parse(fs.readFileSync(postFilePath));
         } catch (e) {
