@@ -21,6 +21,10 @@ b {
 	font-family:GalanoGrotesque-Medium, sans-serif;
 	letter-spacing:0.15px;
 }
+strong {
+	font-family:GalanoGrotesque-Medium, sans-serif;
+	letter-spacing:0.15px;
+}
 h1 {
 	font-family:GalanoGrotesqueAlt-Bold, sans-serif;
 	font-size:40px;
@@ -59,4 +63,9 @@ a:hover, a:active {
 }
 .mainLink:hover, .mainLink:active {
 	color:#fb3f32;
+}
+
+/* Hide post loader */
+#postLoader {
+    display: none;
 }

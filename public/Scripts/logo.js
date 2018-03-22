@@ -10,7 +10,7 @@
 
 // --------------------------- KNOWN ANIMATION DATA ---------------------------
 // Path to image files
-var IMG_PATH 		= "Images/Logo/";
+var IMG_PATH 		= "images/logo/";
 // Frames to milliseconds conversion for timing information
 var FRAME_TO_MS 	= 1/(29.997) * 1000;
 // Total number of frame image files
@@ -100,23 +100,23 @@ var pattern_data;
 var logo_ctx;
 var logo_current_img;
 
-// Makes resize() be called on window load and resize
-window.onload		= resize;
-window.onresize 	= resize;
+// Makes Resize() be called on window load and Resize
+window.onload		= Resize;
+window.onresize 	= Resize;
 
 // Entry point for window onload and resize events
-function resize()
+function Resize()
 {
 	active = false;
 	if (window.innerWidth > 700)
 	{
 		active = true;
-		start();
+		Start();
 	}
 }
 
-// This function is called when the page 
-function start()
+// This function is called when the page loads or resizes
+function Start()
 {
 	// Initialize canvas
 	logo_ctx = document.getElementById('logoCanvas').getContext("2d");
@@ -126,7 +126,7 @@ function start()
 	{
 		initialized = true;
 
-		initLoader();
+		InitLoader();
 
 		// Convert FRAME_TIME_ANIM from frames to milliseconds
 		for (var i = 0; i < FRAME_TIME_ANIM.length; i++)
@@ -139,25 +139,26 @@ function start()
 		// Force load first image
 		var frame_ind = FRAME_IND_STILL[still_current];
 		loader_frames[frame_ind] = new Image(FRAME_WIDTH, FRAME_HEIGHT);
-		loader_frames[frame_ind].src = IMG_PATH+"animation"+frame_ind+".png";
+        loader_frames[frame_ind].src = IMG_PATH + "animation"
+            + frame_ind + ".png";
 		loader_frames[frame_ind].onload = function() {
 			logo_current_img = loader_frames[frame_ind];
-			initGrain();
+			InitGrain();
 			time_start = window.performance.now();
-			requestAnimationFrame(loop);
+			requestAnimationFrame(Loop);
 			loader_still = still_current;
 			loader_anim_frame = anim_frame_current;
-			loaderNext();
+			LoaderNext();
 		}
 	}
 	else
 	{
 		time_start = window.performance.now();
-		requestAnimationFrame(loop);
+		requestAnimationFrame(Loop);
 	}
 }
 
-function initLoader()
+function InitLoader()
 {
 	// Initialize all frames to unloaded
 	for (var i = 0; i < NUM_FRAME_FILES; i++)
@@ -168,7 +169,7 @@ function initLoader()
 		loader_anim_ready[i] = false;
 }
 
-function loaderComplete()
+function LoaderComplete()
 {
 	for (var i = 0; i < NUM_FRAME_FILES; i++)
 		if (loader_frames[i] == 0)
@@ -177,7 +178,7 @@ function loaderComplete()
 	return true;
 }
 
-function loaderNext()
+function LoaderNext()
 {
 	if (loader_anim_frame >= FRAME_IND_ANIM[loader_still].length)
 	{
@@ -188,7 +189,7 @@ function loaderNext()
 			// Next still frame not loaded
 			loader_frames[frame_ind] = new Image(FRAME_WIDTH, FRAME_HEIGHT);
 			loader_frames[frame_ind].src = IMG_PATH+"animation"+frame_ind+".png";
-			loader_frames[frame_ind].onload = loaderNext;
+			loader_frames[frame_ind].onload = LoaderNext;
 		}
 		else
 		{
@@ -198,7 +199,7 @@ function loaderNext()
 			loader_still = (loader_still + 1) % NUM_STILLS;
 
 			// If all frames have been loaded, exit
-			if (loaderComplete())
+			if (LoaderComplete())
 			{
 				for (var i = 0; i < NUM_STILLS; i++)
 					loader_anim_ready[i] = true;
@@ -207,7 +208,7 @@ function loaderNext()
 			}
 			else
 			{
-				loaderNext();
+				LoaderNext();
 			}
 		}
 	}
@@ -221,18 +222,18 @@ function loaderNext()
 			// This frame hasn't been loaded
 			loader_frames[frame_ind] = new Image(FRAME_WIDTH, FRAME_HEIGHT);
 			loader_frames[frame_ind].src = IMG_PATH+"animation"+frame_ind+".png";
-			loader_frames[frame_ind].onload = loaderNext;
+			loader_frames[frame_ind].onload = LoaderNext;
 		}
 		else
 		{
 			// This frame was already loaded
-			loaderNext();
+			LoaderNext();
 		}
 	}
 }
 
 // Create film grain pattern canvas
-function initGrain()
+function InitGrain()
 {
     pattern_canvas = document.createElement("canvas");
     pattern_canvas.width = PATTERN_WIDTH;
@@ -242,7 +243,7 @@ function initGrain()
 }
 
 // Generate noise in the pattern canvas
-function genNoise()
+function GenNoise()
 {
     var value;
     for (var i = 0; i < PATTERN_PIXELS; i += 4)
@@ -265,7 +266,7 @@ function genNoise()
 
 // Draw the film grain, and then the logo on top with "destination-atop" blending
 // (the blending mode was set in the start() function)
-function draw()
+function Draw()
 {
     logo_ctx.clearRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
     logo_ctx.fillStyle = logo_ctx.createPattern(pattern_canvas, 'repeat');
@@ -274,7 +275,7 @@ function draw()
 }
 
 // Main animation loop
-function loop()
+function Loop()
 {
 	if (!active)
 		return;
@@ -312,7 +313,7 @@ function loop()
 	}
 	
 	// Render film grain pattern
-	genNoise();
-	draw();
-    requestAnimationFrame(loop);
+	GenNoise();
+	Draw();
+    requestAnimationFrame(Loop);
 }
