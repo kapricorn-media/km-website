@@ -112,14 +112,14 @@ window.onload = function() {
     for (var i = 0; i < toLoad.length; i++) {
         toLoad[i] = "\"" + toLoad[i].trim() + "\"";
     }
-    toLoad = toLoad.join(",");
+    toLoad = "[" + toLoad.join(",") + "]";
 
     var posts = document.createElement("div");
     posts.id = "posts";
     postLoaderInfo.parentElement.appendChild(posts);
 
     var loadPath = "/posts?type=" + type
-        + "&names=[" + encodeURIComponent(toLoad) + "]";
+        + "&names=" + encodeURIComponent(toLoad);
     LoadJSON(loadPath, function(data) {
         var mdConverter = new showdown.Converter();
 
