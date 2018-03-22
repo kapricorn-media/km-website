@@ -13,15 +13,21 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 // Serve post entries
 app.post("/posts", function(req, res) {
+    var MAX_POSTS = 20;
+
     var type = req.query.type;
     if (typeof(type) !== "string") {
-        res.sendStatus(400);
+        res.status(400);
+        res.send("Type argument invalid");
         return;
     }
 
     var names = req.body;
-    if (!Array.isArray(names) || names.length > 20) {
-        res.sendStatus(400);
+    console.log(names);
+    if (!Array.isArray(names) || names.length > MAX_POSTS) {
+        res.status(400);
+        res.send("Names not an array or larger than "
+            + MAX_POSTS + " elements");
         return;
     }
 
@@ -31,7 +37,8 @@ app.post("/posts", function(req, res) {
         try {
             var postData = cson.parse(fs.readFileSync(postFilePath));
         } catch (e) {
-            res.sendStatus(400);
+            res.status(400);
+            res.send("Requested non-existent file: " + postFilePath);
             return;
         }
         result.push(postData);
