@@ -25,7 +25,7 @@ app.get("/posts", function(req, res) {
         return;
     }
     try {
-        names = JSON.parse(names);
+        names = JSON.parse(decodeURIComponent(names));
     } catch (e) {
         res.sendStatus(400);
         return;
