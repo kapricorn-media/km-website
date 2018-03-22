@@ -23,7 +23,6 @@ app.post("/posts", function(req, res) {
     }
 
     var names = req.body;
-    console.log(names);
     if (!Array.isArray(names) || names.length > MAX_POSTS) {
         res.status(400);
         res.send("Names not an array or larger than "
@@ -33,7 +32,9 @@ app.post("/posts", function(req, res) {
 
     var result = [];
     for (var i = 0; i < names.length; i++) {
-        var postFilePath = path.join("posts", type, names[i] + ".cson");
+        var postFilePath = path.join(__dirname, "/posts", type,
+            names[i] + ".cson");
+        console.log(postFilePath);
         try {
             var postData = cson.parse(fs.readFileSync(postFilePath));
         } catch (e) {

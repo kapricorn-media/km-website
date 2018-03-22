@@ -131,17 +131,12 @@ window.onload = function() {
     for (var i = 0; i < toLoad.length; i++) {
         toLoad[i] = toLoad[i].trim();
     }
-    /*toLoad = "[" + toLoad.join(",") + "]";*/
-    console.log(toLoad);
 
     var posts = document.createElement("div");
     posts.id = "posts";
     postLoaderInfo.parentElement.appendChild(posts);
-
-    /*var loadPath = "/posts?type=" + type
-        + "&names=" + encodeURIComponent(toLoad);*/
+    
     var loadPath = "/posts?type=" + type;
-    console.log(loadPath);
     PostJSON(loadPath, toLoad, function(data) {
         var mdConverter = new showdown.Converter();
 
