@@ -83,7 +83,7 @@ function CreateElementFromHTML(htmlString)
     return div.firstChild;
 }
 
-function LoadJSON(path, success, error)
+function GetJSON(path, success, error)
 {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -105,22 +105,44 @@ function LoadJSON(path, success, error)
     xhr.send();
 }
 
+function PostJSON(path, sendData, success, error) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", path);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            if (success) {
+                success(JSON.parse(xhr.responseText));
+            }
+        }
+        else {
+            if (error) {
+                error(xhr);
+            }
+        }
+    }
+    xhr.send(JSON.stringify(sendData));
+}
+
 window.onload = function() {
     var postLoaderInfo = document.getElementById("postLoader");
     var type = postLoaderInfo.className;
     var toLoad = postLoaderInfo.innerHTML.trim().split(",");
     for (var i = 0; i < toLoad.length; i++) {
-        toLoad[i] = "\"" + toLoad[i].trim() + "\"";
+        toLoad[i] = toLoad[i].trim();
     }
-    toLoad = "[" + toLoad.join(",") + "]";
+    /*toLoad = "[" + toLoad.join(",") + "]";*/
+    console.log(toLoad);
 
     var posts = document.createElement("div");
     posts.id = "posts";
     postLoaderInfo.parentElement.appendChild(posts);
 
-    var loadPath = "/posts?type=" + type
-        + "&names=" + encodeURIComponent(toLoad);
-    LoadJSON(loadPath, function(data) {
+    /*var loadPath = "/posts?type=" + type
+        + "&names=" + encodeURIComponent(toLoad);*/
+    var loadPath = "/posts?type=" + type;
+    console.log(loadPath);
+    PostJSON(loadPath, toLoad, function(data) {
         var mdConverter = new showdown.Converter();
 
         for (var i = 0; i < data.length; i++) {
