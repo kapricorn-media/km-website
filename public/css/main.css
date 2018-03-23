@@ -51,7 +51,7 @@ h3 {
 /* General link formatting */
 a {
 	font-family:GalanoGrotesque-Medium, sans-serif;
-	text-decoration:none;
+    text-decoration:none;
 }
 a:hover, a:active {
 	color:#fb3f32;

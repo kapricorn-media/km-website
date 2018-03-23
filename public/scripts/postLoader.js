@@ -1,3 +1,17 @@
+function InitFancybox()
+{
+    $(".entryImg").wrap(function() {
+        var $this = $(this);
+        var str = "<a class='fancybox' href='"
+            + $this.attr("src") + "'></a>";
+        return str;
+    });
+    
+    $(".fancybox").fancybox({
+        // Options
+    });
+}
+
 function BuildPostHTML(metadata, content)
 {
     var templateBase = '\
@@ -27,7 +41,7 @@ function BuildPostHTML(metadata, content)
         </div> \
     ';
     var templateImage = '\
-        <img class="entryImg fancybox" src="{IMG_SRC}"> \
+        <img class="entryImg" src="{IMG_SRC}"> \
     ';
     var templateVideo = '\
         <div class="vidContainer"> \
@@ -152,6 +166,8 @@ window.onload = function() {
                 posts.appendChild(postSpacer);
             }
         }
+
+        InitFancybox();
     }, function(xhr) {
         console.log("Post loader error");
         console.log(xhr);

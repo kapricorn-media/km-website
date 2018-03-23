@@ -48,13 +48,13 @@ html {
 /* Single post and its components */
 .entry {
 	width:92%;
-	min-width:340px;
+	min-width:360px;
 	min-height:300px;
 	margin:0 auto;
 }
 .entryOutline {
 	width:35%;
-	min-width:360px;
+	min-width:380px;
 	min-height:300px;
 	margin:0 auto;
 	background-color:#ECECEC;
