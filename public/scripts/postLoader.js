@@ -12,6 +12,27 @@ function InitFancybox()
     });
 }
 
+function InitGameLinks()
+{
+    $(".postTitle h2").wrap(function() {
+        var title = $(this).html();
+        var link = "";
+        if (title.includes("Saito")) {
+            link = "https://kapricornmedia.itch.io/saitos-transgression";
+        }
+        else if (title.includes("Storm")) {
+            link = "https://kapricornmedia.itch.io/storm-os";
+        }
+        else if (title.includes("Morph")) {
+            return "";
+        }
+        else if (title.includes("Know Your Spell")) {
+            link = "https://kapricornmedia.itch.io/wand-works-spell-simulator";
+        }
+        return "<a href='" + link + "'></a>";
+    });
+}
+
 function BuildPostHTML(metadata, content)
 {
     var templateBase = '\
@@ -168,6 +189,9 @@ window.onload = function() {
         }
 
         InitFancybox();
+        if (type === "games") {
+            InitGameLinks();
+        }
     }, function(xhr) {
         console.log("Post loader error");
         console.log(xhr);
