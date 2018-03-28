@@ -14,14 +14,14 @@
     <image:title>Kapricorn Media Logo</image:title>
     <image:caption>Logo for the independent game development team, Kapricorn Media.</image:caption>
   </image:image>
-  <lastmod>2016-10-19</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>1</priority>
+  <lastmod>2018-03-22T01:20:02+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>1.00</priority>
 </url>
 <url>
   <loc>http://www.kapricornmedia.com/about/</loc>
-  <lastmod>2016-10-19</lastmod>
-  <changefreq>weekly</changefreq>
+  <lastmod>2018-03-22T01:20:02+00:00</lastmod>
+  <changefreq>monthly</changefreq>
   <priority>0.8</priority>
   <image:image>
     <image:loc>http://www.kapricornmedia.com/images/user1HighRes.png</image:loc>
@@ -36,20 +36,20 @@
 </url>
 <url>
   <loc>http://www.kapricornmedia.com/blog/</loc>
-  <lastmod>2016-10-19</lastmod>
-  <changefreq>daily</changefreq>
+  <lastmod>2018-03-22T01:20:02+00:00</lastmod>
+  <changefreq>weekly</changefreq>
   <priority>0.8</priority>
 </url>
 <url>
   <loc>http://www.kapricornmedia.com/contact/</loc>
-  <lastmod>2016-10-19</lastmod>
-  <changefreq>weekly</changefreq>
+  <lastmod>2018-03-22T01:20:02+00:00</lastmod>
+  <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 <url>
   <loc>http://www.kapricornmedia.com/games/</loc>
-  <lastmod>2016-10-19</lastmod>
-  <changefreq>weekly</changefreq>
+  <lastmod>2018-03-22T01:20:02+00:00</lastmod>
+  <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
 
