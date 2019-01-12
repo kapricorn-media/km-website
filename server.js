@@ -11,6 +11,7 @@ const PORT_HTTP = 8080;
 const PORT_HTTPS = 8181;
 const app = express();
 
+/*
 const privateKey = fs.readFileSync("/etc/letsencrypt/live/kapricornmedia.com/privkey.pem", "utf8");
 const cert = fs.readFileSync("/etc/letsencrypt/live/kapricornmedia.com/cert.pem", "utf8");
 const ca = fs.readFileSync("/etc/letsencrypt/live/kapricornmedia.com/chain.pem", "utf8");
@@ -20,6 +21,7 @@ const credentials = {
 	cert: cert,
 	ca: ca
 };
+*/
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
@@ -61,11 +63,11 @@ app.post("/posts", function(req, res) {
 });
 
 const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
 httpServer.listen(PORT_HTTP, function() {
 	console.log("HTTP server listening on port " + PORT_HTTP);
 });
-
-const httpsServer = https.createServer(credentials, app);
 httpsServer.listen(PORT_HTTPS, function() {
 	console.log("HTTPS server listening on port " + PORT_HTTPS);
 });
