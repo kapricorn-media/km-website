@@ -24,11 +24,6 @@ const credentials = {
 	ca: ca
 };
 
-app.use(function(req, res) {
-	res.send("Hello sailor");
-});
-
-/*
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -67,7 +62,6 @@ app.post("/posts", function(req, res) {
 
 	res.send(result);
 });
-*/
 
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
