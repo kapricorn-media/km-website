@@ -11,18 +11,24 @@ const PORT_HTTP = 8080;
 const PORT_HTTPS = 8181;
 const app = express();
 
-/*
-const privateKey = fs.readFileSync("/etc/letsencrypt/live/kapricornmedia.com/privkey.pem", "utf8");
-const cert = fs.readFileSync("/etc/letsencrypt/live/kapricornmedia.com/cert.pem", "utf8");
-const ca = fs.readFileSync("/etc/letsencrypt/live/kapricornmedia.com/chain.pem", "utf8");
+const privateKey = fs.readFileSync(
+	"/etc/letsencrypt/live/kapricornmedia.com-0001/privkey.pem", "utf8");
+const cert = fs.readFileSync(
+	"/etc/letsencrypt/live/kapricornmedia.com-0001/cert.pem", "utf8");
+const ca = fs.readFileSync(
+	"/etc/letsencrypt/live/kapricornmedia.com-0001/chain.pem", "utf8");
 
 const credentials = {
 	key: privateKey,
 	cert: cert,
 	ca: ca
 };
-*/
 
+app.use(function(req, res) {
+	res.send("Hello sailor");
+});
+
+/*
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -61,6 +67,7 @@ app.post("/posts", function(req, res) {
 
 	res.send(result);
 });
+*/
 
 const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
