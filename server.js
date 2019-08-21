@@ -2,14 +2,11 @@ const bodyParser = require("body-parser");
 const cson = require("cson");
 const express = require("express");
 const fs = require("fs");
-const http = require("http");
 const https = require("https");
 const path = require("path");
 const util = require("util");
 
-const PORT_HTTP = 8080;
-const PORT_HTTPS = 8181;
-const app = express();
+const PORT_HTTPS = 8080;
 
 const privateKey = fs.readFileSync("./keys/privkey.pem", "utf8");
 const cert = fs.readFileSync("./keys/cert.pem", "utf8");
@@ -21,6 +18,7 @@ const credentials = {
 	ca: ca
 };
 
+const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -60,12 +58,9 @@ app.post("/posts", function(req, res) {
 	res.send(result);
 });
 
-const httpServer = http.createServer(app);
 const httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(PORT_HTTP, function() {
-	console.log("HTTP server listening on port " + PORT_HTTP);
-});
 httpsServer.listen(PORT_HTTPS, function() {
 	console.log("HTTPS server listening on port " + PORT_HTTPS);
 });
+
