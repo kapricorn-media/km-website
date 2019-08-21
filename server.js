@@ -11,12 +11,9 @@ const PORT_HTTP = 8080;
 const PORT_HTTPS = 8181;
 const app = express();
 
-const privateKey = fs.readFileSync(
-	"/etc/letsencrypt/live/kapricornmedia.com-0001/privkey.pem", "utf8");
-const cert = fs.readFileSync(
-	"/etc/letsencrypt/live/kapricornmedia.com-0001/cert.pem", "utf8");
-const ca = fs.readFileSync(
-	"/etc/letsencrypt/live/kapricornmedia.com-0001/chain.pem", "utf8");
+const privateKey = fs.readFileSync("./keys/privkey.pem", "utf8");
+const cert = fs.readFileSync("./keys/cert.pem", "utf8");
+const ca = fs.readFileSync("./keys/chain.pem", "utf8");
 
 const credentials = {
 	key: privateKey,
