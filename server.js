@@ -2,21 +2,15 @@ const bodyParser = require("body-parser");
 const cson = require("cson");
 const express = require("express");
 const fs = require("fs");
-const https = require("https");
+const http = require("http");
 const path = require("path");
 const util = require("util");
 
-const PORT_HTTPS = 8080;
-
-const privateKey = fs.readFileSync("./keys/privkey.pem", "utf8");
-const cert = fs.readFileSync("./keys/cert.pem", "utf8");
-const ca = fs.readFileSync("./keys/chain.pem", "utf8");
-
-const credentials = {
-	key: privateKey,
-	cert: cert,
-	ca: ca
-};
+if (process.argv.length != 3) {
+    console.error("Missing HTTP server port argument");
+    process.exit(1);
+}
+const port = parseInt(process.argv[2]);
 
 const app = express();
 app.use(bodyParser.json());
@@ -58,9 +52,8 @@ app.post("/posts", function(req, res) {
 	res.send(result);
 });
 
-const httpsServer = https.createServer(credentials, app);
-
-httpsServer.listen(PORT_HTTPS, function() {
-	console.log("HTTPS server listening on port " + PORT_HTTPS);
+const server = http.createServer(app);
+server.listen(port, function() {
+	console.log("HTTP server listening on port " + port);
 });
 
